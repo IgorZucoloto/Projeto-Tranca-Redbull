@@ -1,14 +1,26 @@
-
-#include <Adafruit_GFX.h>    // Biblioteca Gráfica
-#include <Adafruit_ST7735.h> // Biblioteca do display
 #include "bitmapsLarge.h" //Arquivo das img em hexa
+#include <Adafruit_GFX.h>    // Biblioteca Gráfica GFX
+#include <Adafruit_ST7735.h> // Biblioteca para o display ST7735
+#include <SPI.h>             // Biblioteca SPI para comunicação
+
+//Conexões Display TFT ST7735 em Ordem
+//VCC → 3.3V
+//GND → GND
+//CS → GPIO 15
+//RES → GPIO 4 
+//DC → GPIO 2
+//SCL → GPIO 18 
+//SDA → GPIO 23
 
 
+// Definir pinos para conexão SPI
+#define TFT_CS     15  // Chip select
+#define TFT_RST    4   // Reset
+#define TFT_DC     2   // Data/Command
 
-
-#define TFT_DC 32 //A0
-#define TFT_CS 5 //CS
-#define TFT_RST 15 
+// Inicializa o display ST7735 com os pinos definidos
+Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
+ 
 
 #define BotTela1 21 // Botão 1
 #define BotTela12 22 // Botão 2
@@ -21,7 +33,7 @@ int y = 0;  //Váriavel de transição da tela2
 int estado1;
 int estado2;
 
-Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
+
 
 void setup() 
 {
